@@ -164,6 +164,7 @@ class _HomePageState extends State<HomePage> {
                         final res = await supabase?.client
                             .from(supabaseTableNameCntrlr.text)
                             .select(supabaseEditorCntrlr.text);
+                        debugPrint('Response: $res');
                         setState(() {
                           response = res;
                         });
@@ -209,7 +210,12 @@ class _HomePageState extends State<HomePage> {
                       valuesStyle: const TextStyle(color: Colors.lightGreenAccent),
                     ),
                   ),
-                  child: JsonView(json: response, shrinkWrap: true, animation: true),
+                  child: JsonView(
+                    json: response,
+                    shrinkWrap: true,
+                    animation: true,
+                    physics: NeverScrollableScrollPhysics(),
+                  ),
                 ),
               ),
           ],
